@@ -46,8 +46,3 @@ app-example
 .env
 .env.local
 .env.development.local
-
-# Pastas de dependências
-node_modules/
-venv/
-__pycache__/
