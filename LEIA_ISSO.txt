@@ -1,0 +1,11 @@
+Na hora de iniciar o api.py use os seguintes comandos em ordem:
+cd Python/
+python -m venv venv
+source venv/bin/activate
+pip install python-dotenv
+uvicorn api:app --host 0.0.0.0 --port 8000 --reload
+
+É para rodar o expo
+cd hackathonRsSolutions/
+npm run web
+se não for manda mensagem hehe
