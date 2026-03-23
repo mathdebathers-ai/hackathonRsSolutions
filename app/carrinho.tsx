@@ -17,34 +17,34 @@ export default function Carrinho() {
   return (
     <>
       <Stack.Screen options={{ headerShown: false }} />
-      <View style={styles.container }>
+      <View style={styles.container}>
         <Text style={styles.titulo}>Seu Carrinho</Text>
-        
+
       </View>
       <View style={styles.navbar}>
 
         <TouchableOpacity
           style={styles.botao}
-          onPress={() => 
+          onPress={() =>
             router.back()
           }
-          >
+        >
           <Text style={styles.textoBotao}>Voltar</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.botao}
-          onPress={() => 
+          onPress={() =>
             router.push({
               pathname: '/modal'
             })
           }
-          >
+        >
           <Text style={styles.textoBotao}>Comprar</Text>
         </TouchableOpacity>
 
       </View>
-      
+
     </>
   );
 }

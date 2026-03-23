@@ -3,8 +3,8 @@ import React, { useState } from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 
 interface PrefCardProps {
-    onSelect: (tipo: 'quero' | 'evito' | null) => void;
-    title: string;
+  onSelect: (tipo: 'quero' | 'evito' | null) => void;
+  title: string;
 }
 
 export const PrefCard = ({ title, onSelect }: PrefCardProps) => {
@@ -19,32 +19,32 @@ export const PrefCard = ({ title, onSelect }: PrefCardProps) => {
   return (
     <View style={cardStyles.card}>
       <Text style={cardStyles.label}>{title}</Text>
-      
+
       <View style={cardStyles.buttonContainer}>
         {/* Botão QUERO */}
-        <TouchableOpacity 
+        <TouchableOpacity
           onPress={() => handlePress('quero')}
           style={[
-            cardStyles.btnBase, 
+            cardStyles.btnBase,
             selecao === 'quero' && cardStyles.btnQueroActive
           ]}
         >
           <Text style={[
-            cardStyles.btnText, 
+            cardStyles.btnText,
             selecao === 'quero' && cardStyles.textQueroActive
           ]}>Quero</Text>
         </TouchableOpacity>
 
         {/* Botão EVITO */}
-        <TouchableOpacity 
+        <TouchableOpacity
           onPress={() => handlePress('evito')}
           style={[
-            cardStyles.btnBase, 
+            cardStyles.btnBase,
             selecao === 'evito' && cardStyles.btnEvitoActive
           ]}
         >
           <Text style={[
-            cardStyles.btnText, 
+            cardStyles.btnText,
             selecao === 'evito' && cardStyles.textEvitoActive
           ]}>Evito</Text>
         </TouchableOpacity>

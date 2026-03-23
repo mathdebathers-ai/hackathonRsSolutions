@@ -5,9 +5,9 @@ import { styles } from '../constants/styles';
 export default function ModalScreen() {
   return (
     <View style={styles.overlay}>
-      
+
       <View style={styles.modal}>
-        
+
         <Text style={styles.titulo}>Pedido pronto!</Text>
         <Text style={styles.subtitulo}>
           Seu pedido foi processado com sucesso.

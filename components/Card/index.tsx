@@ -20,7 +20,7 @@ interface ItemCardProps {
 export const ItemCard = (props: ItemCardProps) => {
     const [qtd, setQtd] = useState<number>(props.qtd);
     const [clicando, setClicando] = useState(false);
-    
+
     const menos = () => {
         if (clicando) return;
         setClicando(true)
@@ -31,9 +31,9 @@ export const ItemCard = (props: ItemCardProps) => {
 
     const mais = () => {
         if (clicando) return;
-        setClicando(true) 
+        setClicando(true)
         setQtd(prev => prev + 1);
-        
+
         setTimeout(() => setClicando(false), 10);
     };
 
@@ -47,7 +47,7 @@ export const ItemCard = (props: ItemCardProps) => {
             </View>
 
             <Text style={styles.descricao}>{props.desc}</Text>
-            
+
             <Text style={styles.valor}>
                 R$ {props.valor.toFixed(2).replace(".", ",")}
             </Text>

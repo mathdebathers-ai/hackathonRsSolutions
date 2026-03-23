@@ -30,7 +30,7 @@ export const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#334155',
     paddingVertical: 15,
-    paddingHorizontal: 70,
+    paddingHorizontal: 40,
     borderRadius: 12,
     alignItems: 'center',
   },
@@ -39,7 +39,7 @@ export const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#334155',
     paddingVertical: 15,
-    paddingHorizontal: 70,
+    paddingHorizontal: 40,
     borderRadius: 12,
     alignItems: 'center',
   },
@@ -103,5 +103,14 @@ export const styles = StyleSheet.create({
     padding: 10,
     backgroundColor: "#fff",
     borderTopWidth: 1
-  }
+  },
+
+  titleCard: {
+    fontSize: 20,
+    fontWeight: "bold",
+    marginTop: 20,
+    textAlign: "center"
+  },
+
+
 });

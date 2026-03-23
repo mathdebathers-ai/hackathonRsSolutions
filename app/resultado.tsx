@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { Text, View, ScrollView, ActivityIndicator, StyleSheet } from "react-native";
-import { useLocalSearchParams, Stack } from "expo-router";
+import { Text, View, ScrollView, ActivityIndicator, StyleSheet, TouchableOpacity } from "react-native";
+import { useLocalSearchParams, Stack, router } from "expo-router";
 import { enviarParaIA } from "../api/api";
 import { ItemCard } from "@/components/Card";
+import { styles } from '../constants/styles';
 
 // Importando as 3 listas de cardápio
 import { burguers } from "../components/Card/cardapio/burguers";
@@ -10,7 +11,7 @@ import { bebidas } from "../components/Card/cardapio/bebidas";
 import { sobremesas } from "../components/Card/cardapio/sobremesas";
 
 export default function Resultado() {
-  const { selecionados } = useLocalSearchParams();
+  const { selecionados, tipo } = useLocalSearchParams();
   const [recomendados, setRecomendados] = useState<any[]>([]);
   const [carregando, setCarregando] = useState(true);
 
@@ -45,7 +46,6 @@ export default function Resultado() {
     filtrarTudo();
   }, [selecionados]);
 
-  // Função para renderizar cada categoria separadamente
   const renderCategoria = (titulo: string, tipoFiltro: string) => {
     const itens = recomendados.filter(item => item.tipo === tipoFiltro);
     if (itens.length === 0) return null;
@@ -67,13 +67,18 @@ export default function Resultado() {
 
   return (
     <View style={{ flex: 1, backgroundColor: '#fff', padding: 20 }}>
-      <Stack.Screen options={{ title: "Opções Filtradas" }} />
+      <Stack.Screen options={{ headerShown: false }} />
       
-      <Text style={{ fontSize: 24, fontWeight: 'bold', marginBottom: 20, color: '#333' }}>
+      <Text style={{ fontSize: 24, fontWeight: 'bold', marginBottom: 20, color: '#333', marginTop: 40 }}>
         {carregando ? "Filtrando o Cardápio..." : "Sua Seleção Personalizada"}
       </Text>
 
-      {carregando && <ActivityIndicator size="large" color="#2E7D32" />}
+      {carregando && (
+        <View style={{ flex: 1, justifyContent: 'center' }}>
+          <ActivityIndicator size="large" color="#2E7D32" />
+          <Text style={{ textAlign: 'center', marginTop: 10 }}>O Chef Gemini está escolhendo...</Text>
+        </View>
+      )}
 
       <ScrollView showsVerticalScrollIndicator={false}>
         {!carregando && (
@@ -90,6 +95,24 @@ export default function Resultado() {
           </Text>
         )}
       </ScrollView>
+
+      {!carregando && (
+        <View style={resStyles.footer}>
+          <TouchableOpacity
+            style={[styles.botao, { flex: 1, backgroundColor: '#ccc' }]}
+            onPress={() => router.push({ pathname: '/preferencias', params: { tipo } })}
+          >
+            <Text style={styles.textoBotao}>Refazer</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={[styles.botao, { flex: 1 }]}
+            onPress={() => router.push({ pathname: '/carrinho' })}
+          >
+            <Text style={styles.textoBotao}>Carrinho</Text>
+          </TouchableOpacity>
+        </View>
+      )}
     </View>
   );
 }
@@ -112,5 +135,12 @@ const resStyles = StyleSheet.create({
     fontStyle: 'italic',
     marginBottom: 4,
     marginLeft: 10
+  },
+  footer: {
+    flexDirection: 'row',
+    gap: 10,
+    paddingTop: 10,
+    borderTopWidth: 1,
+    borderColor: '#eee'
   }
 });
